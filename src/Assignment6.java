@@ -11,6 +11,7 @@ class Assigment6 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean createNewEmployee;                  // Boolean to capture if a new employee will be created
+        int employeeId = 1;
 
         ArrayList<Employee> employeeArrayList = new ArrayList<>();      // Array to capture all Employees
 
@@ -43,8 +44,9 @@ class Assigment6 {
 
             Date date = new Date(month, day, year);
 
-            Employee employee = new Employee(name, address, date);          // Create new Employee
+            Employee employee = new Employee(name, address, date, employeeId);          // Create new Employee
             employeeArrayList.add(employee);                                // Store new Employee in Array
+            employeeId++;
 
 
             System.out.println("Would you like to type in another Employee information? Y or N: ");     // Prompt User for new Employee
@@ -56,13 +58,12 @@ class Assigment6 {
 
         for (int i = 0; i < employeeArrayList.size(); i++) {        // Loop through Employee Array List and prints Employee information
             Employee currEmployee = employeeArrayList.get(i);
-            int employeeNumber = i + 1;
 
             System.out.println();
             currEmployee.getName();
             currEmployee.getAddress();
             currEmployee.getDate();
-            System.out.println("Employee #" + employeeNumber + ": ");
+            System.out.println("Employee Id: " + currEmployee.getId());
             System.out.println("Name: " + currEmployee.getName());
             System.out.println("Address: " + currEmployee.getAddress());
             System.out.println("Date: " + currEmployee.getDate());
@@ -124,15 +125,17 @@ class Assigment6 {
 
 
 class Employee {
-    public Name name;
-    public Address address;
-    public Date date;
+    private int id;
+    private Name name;
+    private Address address;
+    private Date date;
 
-    Employee(Name name, Address address, Date date) {
+    Employee(Name name, Address address, Date date, int id) {
 
         this.name = name;
         this.address = address;
         this.date = date;
+        this.id = id;
     }
 
     String getName() {
@@ -145,6 +148,10 @@ class Employee {
 
     String getDate() {
         return this.date.getDate();
+    }
+
+    int getId(){
+        return this.id;
     }
 
 
