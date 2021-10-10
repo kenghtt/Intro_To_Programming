@@ -10,7 +10,7 @@ import java.util.Scanner;
 class Assigment6 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean createNewEmployee = false;                  // Boolean to capture if a new employee will be created
+        boolean createNewEmployee;                  // Boolean to capture if a new employee will be created
 
         ArrayList<Employee> employeeArrayList = new ArrayList<>();      // Array to capture all Employees
 
@@ -82,7 +82,8 @@ class Assigment6 {
      */
     static String validateString(Scanner scanner, String type) {
 
-        String employeeInfo = "";
+        String employeeInfo;
+
         boolean isValid;
         do {
             isValid = true;
