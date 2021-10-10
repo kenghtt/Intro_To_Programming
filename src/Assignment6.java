@@ -10,52 +10,52 @@ import java.util.Scanner;
 class Assigment6 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean createNewEmployee = false;
+        boolean createNewEmployee = false;                  // Boolean to capture if a new employee will be created
 
-        ArrayList<Employee> array = new ArrayList<>();
+        ArrayList<Employee> employeeArrayList = new ArrayList<>();      // Array to capture all Employees
 
         do {
 
-            System.out.println("Please type in the First Name: ");
+            System.out.println("Please type in the First Name: ");      // Prompt First Name
             String firstName = validateString(scanner, "");
-            System.out.println("Please type in the Last Name: ");
+            System.out.println("Please type in the Last Name: ");       // Prompt Last Name
             String lastName = validateString(scanner, "");
 
             Name name = new Name(firstName, lastName);
 
-            System.out.println("Please type in the Street Name: ");
+            System.out.println("Please type in the Street Address: ");     // Prompt Street Address
             String street = validateString(scanner, "");
-            System.out.println("Please type in the City: ");
+            System.out.println("Please type in the City: ");                // Prompt City
             String city = validateString(scanner, "c");
-            System.out.println("Please type in the State Code (2 letters): ");
+            System.out.println("Please type in the State Code (State Abbreviation): ");      // Prompt State Abbreviation
             String state = validateString(scanner, "state");
-            System.out.println("Please type in the Zip Code:: ");
+            System.out.println("Please type in the Zip Code: ");                // Prompt Zip Code
             int zipCode = Integer.parseInt(validateString(scanner, "zip"));
 
             Address address = new Address(street, city, state, zipCode);
 
-            System.out.println("Please type in the hire month: ");
+            System.out.println("Please type in the hire month: ");              // Prompt Hire Month
             int month = Integer.parseInt(validateString(scanner, "month"));
             System.out.println("Please type in the hire day: ");
-            int day = Integer.parseInt(validateString(scanner, "day"));
+            int day = Integer.parseInt(validateString(scanner, "day"));     // Prompt Hire Day
             System.out.println("Please type in the hire year: ");
-            int year = Integer.parseInt(validateString(scanner, "year"));
+            int year = Integer.parseInt(validateString(scanner, "year"));       // Prompt Hire year
 
             Date date = new Date(month, day, year);
 
-            Employee employee = new Employee(name, address, date);
-            array.add(employee);
+            Employee employee = new Employee(name, address, date);          // Create new Employee
+            employeeArrayList.add(employee);                                // Store new Employee in Array
 
 
-            System.out.println("Would you like to type in another Employee information? Y or N: ");
+            System.out.println("Would you like to type in another Employee information? Y or N: ");     // Prompt User for new Employee
             String tryAgain = validateString(scanner, "");
             createNewEmployee = tryAgain.equalsIgnoreCase("Y");
 
 
         } while (createNewEmployee);
 
-        for (int i = 0; i < array.size(); i++) {
-            Employee currEmployee = array.get(i);
+        for (int i = 0; i < employeeArrayList.size(); i++) {        // Loop through Employee Array List and prints Employee information
+            Employee currEmployee = employeeArrayList.get(i);
             int employeeNumber = i + 1;
 
             System.out.println();
@@ -72,42 +72,50 @@ class Assigment6 {
 
     }
 
+
+    /**
+     * This method validates that the input is valid for each Employee Information.
+     *
+     * @param scanner is used to capture user input
+     * @param type    of validation needed for specific inputs
+     * @return type string for Employee information is returned
+     */
     static String validateString(Scanner scanner, String type) {
 
-        String value = "";
+        String employeeInfo = "";
         boolean isValid;
         do {
             isValid = true;
-            value = scanner.nextLine();
+            employeeInfo = scanner.nextLine();         // Prompts for input
 
-            if (value.isBlank()) {
+            if (employeeInfo.isBlank()) {              // Validate if input is blank
                 isValid = false;
-            } else if (type.equals("state")) {
+            } else if (type.equals("state")) {      // Validate for valid state abbreviation
 
                 String states = "|AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY|";
-                isValid = states.contains(value.toUpperCase());
+                isValid = states.contains(employeeInfo.toUpperCase());
 
-            } else if (type.equals("zip")) {
+            } else if (type.equals("zip")) {        // Validate that zipcode is length of 5
 
-                isValid = value.length() == 5;
+                isValid = employeeInfo.length() == 5;
 
-            } else if (type.equals("month")) {
+            } else if (type.equals("month")) {          // Validate that month is from 1-12
 
-                isValid = Integer.parseInt(value) > 0 && Integer.parseInt(value) <= 12;
+                isValid = Integer.parseInt(employeeInfo) > 0 && Integer.parseInt(employeeInfo) <= 12;
 
-            } else if (type.equals("day")) {
+            } else if (type.equals("day")) {            // Validate that Day is from 1-31
 
-                isValid = Integer.parseInt(value) > 0 && Integer.parseInt(value) <= 31;
-            } else if (type.equals("year")) {
-                isValid = Integer.parseInt(value) > 1900 && Integer.parseInt(value) < 2021;
+                isValid = Integer.parseInt(employeeInfo) > 0 && Integer.parseInt(employeeInfo) <= 31;
+            } else if (type.equals("year")) {           // Validate that year is between 1900 and 2021
+                isValid = Integer.parseInt(employeeInfo) > 1900 && Integer.parseInt(employeeInfo) < 2021;
             }
 
-            if (!isValid) {
-                System.out.println("Value is either blank or invalid, please try again");
+            if (!isValid) {                     // When invalid , let user know that there was an invalid input
+                System.out.println("Input is invalid, please try again!");
             }
-        } while (!isValid);
+        } while (!isValid);     // Retry if input was invalid
 
-        return value;
+        return employeeInfo;       // return employee information
     }
 
 
