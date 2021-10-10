@@ -1,6 +1,5 @@
 package com;
 
-
 /**
  * @author Jeremy Yang
  * EN.605.201.81.FA21
@@ -107,7 +106,7 @@ class Project1 {
             if(i != position-1){
                 System.out.print("_");
             } else
-            System.out.print(letter);
+                System.out.print(letter);
         }
 
     }

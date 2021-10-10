@@ -61,6 +61,9 @@ class Project1 {
 
     }
 
+    /**
+     * @return the number of steps is returned
+     */
     static int getHareNextPosition() {
         int num = generateRandomNumber(); // Generate random number between 1-10
 
@@ -97,9 +100,20 @@ class Project1 {
         }
     }
 
+    /**
+     * @return a random integer from 1 to 10 is returned
+     */
     static int generateRandomNumber() {
         return (int) (10 * Math.random()) + 1;
     }
+
+    /**
+     *
+     * @param position is a type of int and the current position
+     * @param letter is a string type comes as either H or T
+     * precondition: position will be 1 or greater and 50 or less
+     * postcondition: print the updated position
+     */
 
     static void displayPosition(int position, String letter) {
         for (int i = 0; i < position; i++) {
