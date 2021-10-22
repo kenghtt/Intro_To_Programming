@@ -1,5 +1,3 @@
-package com;
-
 /**
  * @author Jeremy Yang
  * EN.605.201.81.FA21
@@ -7,7 +5,7 @@ package com;
  */
 
 
-class Project1 {
+class zProject1 {
     public static void main(String[] args) throws InterruptedException {
 
         int maxPosition = 50;   // Maximum Position to reach the finish line
