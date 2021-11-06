@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class Assignment10 {
+public class Assignment10_Write {
 
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -24,7 +24,6 @@ public class Assignment10 {
         String[] popByChildren = new String[13486];   //Population of Relevant Children 5 to 17 years of Age
         String[] popByChildrenInPoverty = new String[13486]; //Estimated Number of Relevant Children 5 to 17 years old in Poverty Related to the Householder
         String[] tag = new String[13486];    //A tag indicating the file name and date of creation
-
 
         while (sc.hasNextLine()) {
             line = sc.nextLine();
@@ -150,12 +149,12 @@ public class Assignment10 {
     }
 
     static StringBuffer addWhiteSpace(StringBuffer stringBuffer, int maxLength) {
-        int counter = 1;
+//        int counter = 1;
         while (stringBuffer.length() < maxLength) {
 //            stringBuffer.append(counter);
             stringBuffer.append(" ");
 
-            counter++;
+//            counter++;
         }
 
         return stringBuffer;
@@ -163,13 +162,3 @@ public class Assignment10 {
 
     }
 }
-
-
-//         1- 2       FIPS State code (00 for US record)
-//          4- 8       District ID
-//         10-81       District Name
-//         83-90       Total Population
-//         92-99       Population of Relevant Children 5 to 17 years of Age
-//        101-108      Estimated Number of Relevant Children 5 to 17 years old
-//                     in Poverty Related to the Householder
-//        110-130      A tag indicating the file name and date of creation
