@@ -58,25 +58,118 @@ public class Assignment10 {
 
     static void saveToFile(String[] fipsStateCode, String[] districtId, String[] districtName, String[] totalPopulation, String[] popByChildren, String[] popByChildrenInPoverty, String[] tag) throws FileNotFoundException {
 
-        Scanner keyboardInput = new Scanner(System.in);
-        System.out.println("Enter the name of the text file (with .txt): ");
-        String fileName = keyboardInput.next();
-        File f = new File( fileName );
+//        Scanner keyboardInput = new Scanner(System.in);
+//        System.out.println("Enter the name of the text file (with .txt): ");
+//        String fileName = keyboardInput.next();
+        String fileName = "hello.txt";
+
+        File f = new File(fileName);
 
         // write records for two parts to the file & close it
         PrintWriter output = new PrintWriter(f);
-        output.println(fipsStateCode[0]+" "+districtId[0]+" "+ districtName[0]+" "+totalPopulation[0]+ " "+ popByChildren[0]+" " + popByChildrenInPoverty[0] + " " + tag[0]);
-        output.print("PartNumber100 ");
+
+        StringBuffer header = new StringBuffer();
+
+        header.append("State");
+        addWhiteSpace(header, 8).toString();
+
+        header.append("District Id");
+        addWhiteSpace(header, 22).toString();
+
+        header.append("District Name");
+        addWhiteSpace(header, 88).toString();
+
+        header.append("Total Population");
+        addWhiteSpace(header, 107).toString();
+
+        header.append("Child Population");
+        addWhiteSpace(header, 126).toString();
+
+        header.append("Child Poverty Population");
+        addWhiteSpace(header, 153).toString();
+
+        header.append("Tag");
+        addWhiteSpace(header, 173).toString();
+
+        output.println(header);
+
+
+        StringBuffer headerLine = new StringBuffer();
+
+        headerLine.append("-----");
+        addWhiteSpace(headerLine, 8).toString();
+
+        headerLine.append("-----------");
+        addWhiteSpace(headerLine, 22).toString();
+
+        headerLine.append("-------------");
+        addWhiteSpace(headerLine, 88).toString();
+
+        headerLine.append("----------------");
+        addWhiteSpace(headerLine, 107).toString();
+
+        headerLine.append("----------------");
+        addWhiteSpace(headerLine, 126).toString();
+
+        headerLine.append("------------------------");
+        addWhiteSpace(headerLine, 153).toString();
+
+        headerLine.append("---");
+        addWhiteSpace(headerLine, 17).toString();
+
+        output.println(headerLine);
+
+        for (int i = 0; i < fipsStateCode.length; i++) {
+            StringBuffer text = new StringBuffer();
+
+            text.append(fipsStateCode[i]);
+            addWhiteSpace(text, 8).toString();
+
+            text.append(districtId[i]);
+            addWhiteSpace(text, 22).toString();
+
+            text.append(districtName[i]);
+            addWhiteSpace(text, 88).toString();
+
+            text.append(totalPopulation[i]);
+            addWhiteSpace(text, 107).toString();
+
+            text.append(popByChildren[i]);
+            addWhiteSpace(text, 126).toString();
+
+            text.append(popByChildrenInPoverty[i]);
+            addWhiteSpace(text, 153).toString();
+
+            text.append(tag[i]);
+            addWhiteSpace(text, 17).toString();
+
+            output.println(text);
+        }
         output.close();
 
+    }
 
-//        for(int i = 0; i<fipsStateCode.length; i++){
-//
-//            output.println(fipsStateCode[i]+ "  ");
-//            output.print("PartNumber100 ");
-//            output.close();
-//
-//
-//        }
+    static StringBuffer addWhiteSpace(StringBuffer stringBuffer, int maxLength) {
+        int counter = 1;
+        while (stringBuffer.length() < maxLength) {
+//            stringBuffer.append(counter);
+            stringBuffer.append(" ");
+
+            counter++;
+        }
+
+        return stringBuffer;
+
+
     }
 }
+
+
+//         1- 2       FIPS State code (00 for US record)
+//          4- 8       District ID
+//         10-81       District Name
+//         83-90       Total Population
+//         92-99       Population of Relevant Children 5 to 17 years of Age
+//        101-108      Estimated Number of Relevant Children 5 to 17 years old
+//                     in Poverty Related to the Householder
+//        110-130      A tag indicating the file name and date of creation
