@@ -1,4 +1,3 @@
-package com.module10;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -60,7 +59,7 @@ public class Assignment10_Write {
 //        Scanner keyboardInput = new Scanner(System.in);
 //        System.out.println("Enter the name of the text file (with .txt): ");
 //        String fileName = keyboardInput.next();
-        String fileName = "/Users/jeremytouch/IdeaProjects/Intro_To_Programming/src/com/module10/output.txt";
+        String fileName = "hello.txt";
 
         File f = new File(fileName);
 
