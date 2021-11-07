@@ -1,3 +1,9 @@
+/**
+ * @author Jeremy Yang
+ * EN.605.201.81.FA21
+ * Assignment 10
+ */
+
 package com.module10;
 
 import java.io.File;
@@ -7,158 +13,173 @@ import java.util.Scanner;
 
 public class Assignment10_Write {
 
+    public static void main(String[] args) throws FileNotFoundException, FileException {
 
-    public static void main(String[] args) throws FileNotFoundException {
-
-
-        // pass the path to the file as a parameter
-        File file = new File("/Users/jeremytouch/IdeaProjects/Intro_To_Programming/src/com/module10/test.txt");
-        Scanner sc = new Scanner(file);
-        String line = "";
-        int counter = 0;
-
-        String[] fipsStateCode = new String[13486]; //FIPS State code (00 for US record)
-        String[] districtId = new String[13486];  //District ID
-        String[] districtName = new String[13486];   //District Name
-        String[] totalPopulation = new String[13486];    //Total Population
-        String[] popByChildren = new String[13486];   //Population of Relevant Children 5 to 17 years of Age
-        String[] popByChildrenInPoverty = new String[13486]; //Estimated Number of Relevant Children 5 to 17 years old in Poverty Related to the Householder
-        String[] tag = new String[13486];    //A tag indicating the file name and date of creation
-
-        while (sc.hasNextLine()) {
-            line = sc.nextLine();
-            fipsStateCode[counter] = line.substring(0, 2).trim();
-            districtId[counter] = line.substring(3, 8).trim();
-            districtName[counter] = line.substring(9, 81).trim();
-            totalPopulation[counter] = line.substring(82, 90).trim();
-            popByChildren[counter] = line.substring(91, 99).trim();
-            popByChildrenInPoverty[counter] = line.substring(100, 108).trim();
-            tag[counter] = line.substring(109, 129).trim();
-            counter++;
+        // Validates for 3 exact runtime parameters
+        if (args.length != 3) {
+            throw new FileException("ERROR: Missing Runtime Parameters. Must be inserted in this order: \n" +
+                    "1: Source File (Absolute Path) \n" +
+                    "2: Destination File (Absolute Path) \n" +
+                    "3: Number of lines (1-50) ");
         }
 
+        // Validate the number of lines must be from 1-50
+        if (Integer.parseInt(args[0]) < 0 && Integer.parseInt(args[0]) > 56) {
+            throw new FileException("ERROR: 3rd parameter must an integer from 1-55");
+        }
 
-        // test if the file already exists
-//        if( f.exists() )
-//        {
-//            System.out.println( "File already exists. Program ending." );
-//            System.exit( 1 );
-//        }
-//        else
-//            System.out.println( "New file being created." );
+        // pass the path to the file as a parameter
+        File sourceFile = new File("/Users/jeremytouch/IdeaProjects/Intro_To_Programming/src/com/module10/test.txt");
+//        File sourceFile = new File(args[0]);
 
-        saveToFile(fipsStateCode, districtId, districtName, totalPopulation, popByChildren, popByChildrenInPoverty, tag);
+        Scanner sc = new Scanner(sourceFile);
+        String line = "";
+        int counter = 0;
+        int numOfRows = Integer.parseInt(args[2]);
+        String destinationFile = args[1];
 
+        String[] stateCodeArray = new String[51]; // FIPS State code
+        int[] totalPopulationArray = new int[51];    // Total Population
+        int[] popByChildrenArray = new int[51];   // Population of Relevant Children 5 to 17 years of Age
+        int[] popByChildrenInPovertyArray = new int[51]; // Estimated Number of Relevant Children 5 to 17 years old in Poverty Related to the Householder
+        float[] childPovertyPercent = new float[51];    // Percent of Child Poverty
 
-        System.out.println();
+        String stateCode = "01";
+        int totalPopulation = 0;
+        int popByChildren = 0;
+        int popByChildrenInPoverty = 0;
+
+        while (sc.hasNextLine() && counter < numOfRows) {
+            line = sc.nextLine();
+
+            if (!line.substring(0, 2).trim().equals(stateCode) || !sc.hasNextLine()) {
+                stateCodeArray[counter] = stateCode;
+                totalPopulationArray[counter] = totalPopulation;
+                popByChildrenArray[counter] = popByChildren;
+                popByChildrenInPovertyArray[counter] = popByChildrenInPoverty;
+                childPovertyPercent[counter] = (float) popByChildrenInPoverty / popByChildren * 100;
+
+                totalPopulation = 0;
+                popByChildren = 0;
+                popByChildrenInPoverty = 0;
+
+                counter++;
+            }
+            stateCode = line.substring(0, 2).trim();
+            totalPopulation += Integer.parseInt(line.substring(82, 90).trim());
+            popByChildren += Integer.parseInt(line.substring(91, 99).trim());
+            popByChildrenInPoverty += Integer.parseInt(line.substring(100, 108).trim());
+        }
+
+        saveToFile(stateCodeArray, totalPopulationArray, popByChildrenArray, popByChildrenInPovertyArray, childPovertyPercent, destinationFile);
 
     }
 
+    /**
+     * @param stateCodeArray:              Array consisting of all state codes
+     * @param totalPopulationArray:        Array of total population in each state
+     * @param popByChildrenArray:          Array of total children population in each state
+     * @param popByChildrenInPovertyArray: Array of total children population who are in poverty in each state
+     * @param childPovertyPercent:         Array of percent of child poverty in each state
+     * @throws FileNotFoundException: Throws exception when file not found
+     */
+    static void saveToFile(String[] stateCodeArray, int[] totalPopulationArray, int[] popByChildrenArray, int[] popByChildrenInPovertyArray, float[] childPovertyPercent, String destinationFile) throws FileNotFoundException {
 
-    static void saveToFile(String[] fipsStateCode, String[] districtId, String[] districtName, String[] totalPopulation, String[] popByChildren, String[] popByChildrenInPoverty, String[] tag) throws FileNotFoundException {
+        File f = new File(destinationFile);
 
-//        Scanner keyboardInput = new Scanner(System.in);
-//        System.out.println("Enter the name of the text file (with .txt): ");
-//        String fileName = keyboardInput.next();
-        String fileName = "/Users/jeremytouch/IdeaProjects/Intro_To_Programming/src/com/module10/output.txt";
-
-        File f = new File(fileName);
-
-        // write records for two parts to the file & close it
         PrintWriter output = new PrintWriter(f);
+        addHeaders(output);
+        addBody(output, stateCodeArray, totalPopulationArray, popByChildrenArray, popByChildrenInPovertyArray, childPovertyPercent);
+        output.close();
+    }
 
+    /**
+     * @param output: Standard Reusable PrintWriter Output
+     */
+    static void addHeaders(PrintWriter output) {
+
+        // Header Titles
         StringBuffer header = new StringBuffer();
 
         header.append("State");
-        addWhiteSpace(header, 8).toString();
-
-        header.append("District Id");
-        addWhiteSpace(header, 22).toString();
-
-        header.append("District Name");
-        addWhiteSpace(header, 88).toString();
+        addWhiteSpace(header, 8);
 
         header.append("Total Population");
-        addWhiteSpace(header, 107).toString();
+        addWhiteSpace(header, 30);
 
         header.append("Child Population");
-        addWhiteSpace(header, 126).toString();
+        addWhiteSpace(header, 50);
 
         header.append("Child Poverty Population");
-        addWhiteSpace(header, 153).toString();
+        addWhiteSpace(header, 80);
 
-        header.append("Tag");
-        addWhiteSpace(header, 173).toString();
+        header.append("% Child Poverty");
+        addWhiteSpace(header, 100);
 
+        // Print Header Title
         output.println(header);
 
-
+        // Header Line
         StringBuffer headerLine = new StringBuffer();
 
         headerLine.append("-----");
-        addWhiteSpace(headerLine, 8).toString();
-
-        headerLine.append("-----------");
-        addWhiteSpace(headerLine, 22).toString();
-
-        headerLine.append("-------------");
-        addWhiteSpace(headerLine, 88).toString();
+        addWhiteSpace(headerLine, 8);
 
         headerLine.append("----------------");
-        addWhiteSpace(headerLine, 107).toString();
+        addWhiteSpace(headerLine, 30);
 
         headerLine.append("----------------");
-        addWhiteSpace(headerLine, 126).toString();
+        addWhiteSpace(headerLine, 50);
 
         headerLine.append("------------------------");
-        addWhiteSpace(headerLine, 153).toString();
+        addWhiteSpace(headerLine, 80);
 
-        headerLine.append("---");
-        addWhiteSpace(headerLine, 17).toString();
+        headerLine.append("---------------");
+        addWhiteSpace(headerLine, 100);
 
+        // Print Header Lines
         output.println(headerLine);
+    }
 
-        for (int i = 0; i < fipsStateCode.length; i++) {
+    /**
+     * @param output:                      Standard Reusable PrintWriter Output
+     * @param stateCodeArray:              Array consisting of all state codes
+     * @param totalPopulationArray:        Array of total population in each state
+     * @param popByChildrenArray:          Array of total children population in each state
+     * @param popByChildrenInPovertyArray: Array of total children population who are in poverty in each state
+     * @param childPovertyPercent:         Array of percent of child poverty in each state
+     */
+    static void addBody(PrintWriter output, String[] stateCodeArray, int[] totalPopulationArray, int[] popByChildrenArray, int[] popByChildrenInPovertyArray, float[] childPovertyPercent) {
+
+        for (int i = 0; i < stateCodeArray.length; i++) {
             StringBuffer text = new StringBuffer();
 
-            text.append(fipsStateCode[i]);
-            addWhiteSpace(text, 8).toString();
+            text.append(stateCodeArray[i]);
+            addWhiteSpace(text, 8);
 
-            text.append(districtId[i]);
-            addWhiteSpace(text, 22).toString();
+            text.append(totalPopulationArray[i]);
+            addWhiteSpace(text, 30);
 
-            text.append(districtName[i]);
-            addWhiteSpace(text, 88).toString();
+            text.append(popByChildrenArray[i]);
+            addWhiteSpace(text, 50);
 
-            text.append(totalPopulation[i]);
-            addWhiteSpace(text, 107).toString();
+            text.append(popByChildrenInPovertyArray[i]);
+            addWhiteSpace(text, 80);
 
-            text.append(popByChildren[i]);
-            addWhiteSpace(text, 126).toString();
-
-            text.append(popByChildrenInPoverty[i]);
-            addWhiteSpace(text, 153).toString();
-
-            text.append(tag[i]);
-            addWhiteSpace(text, 17).toString();
+            text.append(childPovertyPercent[i]);
+            addWhiteSpace(text, 100);
 
             output.println(text);
         }
-        output.close();
-
     }
 
-    static StringBuffer addWhiteSpace(StringBuffer stringBuffer, int maxLength) {
-//        int counter = 1;
+    /**
+     * @param stringBuffer: Standard StringBuffer
+     * @param maxLength:    Maximum length of including white space for each column in table
+     */
+    static void addWhiteSpace(StringBuffer stringBuffer, int maxLength) {
         while (stringBuffer.length() < maxLength) {
-//            stringBuffer.append(counter);
             stringBuffer.append(" ");
-
-//            counter++;
         }
-
-        return stringBuffer;
-
-
     }
 }

@@ -1041,14 +1041,14 @@
 06 19800 Kingsburg Joint Union Elementary School District                            15010     2121      533 USSD13.txt 24NOV2014  
 06 19830 Kingsburg Joint Union High School District                                  17938     1176      558 USSD13.txt 24NOV2014  
 06 19860 Kirkwood Elementary School District                                           295       34       12 USSD13.txt 24NOV2014  
-06 19890 Kit Carson Union Elementary School District                                  2415      327       97 USSD13.txt 24NOV2014  
-06 19920 Klamath River Union Elementary School District                                472       31        9 USSD13.txt 24NOV2014  
+06 19890 Kit Carson Union Elementary School District                                  2415      327       97 USSD13.txt 24NOV2014
+06 19920 Klamath River Union Elementary School District                                472       31        9 USSD13.txt 24NOV2014
 06 19950 Klamath-Trinity Joint Unified School District                                6307     1191      387 USSD13.txt 24NOV2014  
 06 19980 Kneeland Elementary School District                                           332       55        6 USSD13.txt 24NOV2014  
 06 20010 Knights Ferry Elementary School District                                      621      118       23 USSD13.txt 24NOV2014  
 06 20040 Knightsen Elementary School District                                         2576      347       65 USSD13.txt 24NOV2014  
 06 20070 Konocti Unified School District                                             22357     3173     1138 USSD13.txt 24NOV2014  
-06 20130 La Cañada Unified School District                                           18048     3873      186 USSD13.txt 24NOV2014  
+06 20130 La Caï¿½ada Unified School District                                           18048     3873      186 USSD13.txt 24NOV2014  
 06 20160 La Grange Elementary School District                                          204       30        9 USSD13.txt 24NOV2014  
 06 20190 La Habra City Elementary School District                                    51129     6316     1477 USSD13.txt 24NOV2014  
 06 20220 La Honda-Pescadero Unified School District                                   3603      481       86 USSD13.txt 24NOV2014  
@@ -1618,7 +1618,7 @@
 08 05640 Buffalo School District RE-4                                                  989      177       28 USSD13.txt 24NOV2014  
 08 02670 Burlington School District RE-6J                                             5043      741      129 USSD13.txt 24NOV2014  
 08 02700 Byers School District 32J                                                    2620      533       84 USSD13.txt 24NOV2014  
-08 02790 Cañon City School District RE-1                                             27381     3801     1125 USSD13.txt 24NOV2014  
+08 02790 Caï¿½on City School District RE-1                                             27381     3801     1125 USSD13.txt 24NOV2014  
 08 02730 Calhan School District RJ-1                                                  3151      641       83 USSD13.txt 24NOV2014  
 08 02760 Campo School District RE-6                                                    247       31        5 USSD13.txt 24NOV2014  
 08 06360 Centennial School District R-1                                               1887      271      105 USSD13.txt 24NOV2014  
@@ -7906,7 +7906,7 @@
 35 00790 Dora Consolidated Schools                                                     652      111       26 USSD13.txt 24NOV2014  
 35 00810 Dulce Independent Schools                                                    3440      788      258 USSD13.txt 24NOV2014  
 35 00840 Elida Municipal Schools                                                       428       66       16 USSD13.txt 24NOV2014  
-35 00900 Española Municipal Schools                                                  36649     6380     2104 USSD13.txt 24NOV2014  
+35 00900 Espaï¿½ola Municipal Schools                                                  36649     6380     2104 USSD13.txt 24NOV2014  
 35 00930 Estancia Municipal Schools                                                   4602      736      224 USSD13.txt 24NOV2014  
 35 00960 Eunice Municipal Schools                                                     3407      695       92 USSD13.txt 24NOV2014  
 35 00990 Farmington Municipal Schools                                                60589    11906     2523 USSD13.txt 24NOV2014  
@@ -7941,7 +7941,7 @@
 35 01890 Moriarty Municipal Schools                                                  22948     4106      874 USSD13.txt 24NOV2014  
 35 01920 Mosquero Municipal Schools                                                    252       28        8 USSD13.txt 24NOV2014  
 35 01950 Mountainair Public Schools                                                   1788      279      101 USSD13.txt 24NOV2014  
-35 02040 Peñasco Independent Schools                                                  3360      522      180 USSD13.txt 24NOV2014  
+35 02040 Peï¿½asco Independent Schools                                                  3360      522      180 USSD13.txt 24NOV2014  
 35 02010 Pecos Independent Schools                                                    4827      763      277 USSD13.txt 24NOV2014  
 35 02070 Pojoaque Valley Public Schools                                               9862     1806      385 USSD13.txt 24NOV2014  
 35 02100 Portales Municipal Schools                                                  18102     3193      966 USSD13.txt 24NOV2014  
