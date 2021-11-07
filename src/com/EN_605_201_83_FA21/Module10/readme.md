@@ -1,4 +1,4 @@
-If this file does not load correctly, please go to https://dillinger.io/ and paste this file into the website for proper formatting
+If this file does not load correctly, please go to https://dillinger.io/ and paste the content of this file into the website for proper formatting
 
 # Overview:
 
