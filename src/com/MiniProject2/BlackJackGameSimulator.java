@@ -43,7 +43,7 @@ public class BlackJackGameSimulator {
                 }
                 betAmount = Integer.parseInt(scanner.nextLine());
             }
-            result = playRound(deck, betAmount);
+            result = playRound(deck);
 
 
             if (result.equals("Win")) {
@@ -94,7 +94,7 @@ public class BlackJackGameSimulator {
         System.out.println("Thank You for playing!!!");
     }
 
-    static String playRound(Stack<Cards> deck, int betAmount) throws InterruptedException {
+    static String playRound(Stack<Cards> deck) throws InterruptedException {
         ArrayList<Cards> dealerHand = new ArrayList<>();
         ArrayList<Cards> playerHand = new ArrayList<>();
         int playerScore = 0;
@@ -139,13 +139,13 @@ public class BlackJackGameSimulator {
 
             }
 
-            if (choice.equals("2")) { // Stand
-                // done
+            if (choice.equals("2")) {   // Stand
                 stand = true;
-            } else if (choice.equals("1")) { // Hit
+            } else {                    // Hit
                 dealCard(deck, playerHand);
                 playerScore = getHand(playerHand, "Player");
                 if (playerScore > 21) {
+                    System.out.println("");
                     System.out.println("BUST!!!!");
                     return "Lose";   // Player loses
                 } else if (playerScore == 21) {
@@ -185,7 +185,22 @@ public class BlackJackGameSimulator {
         System.out.println("");
         System.out.println("Dealer Hand: ");
         System.out.println("? Hidden");
-        System.out.println(dealerHand.get(1).getNumber() + " " + dealerHand.get(1).getSuit());
+
+        int secondHand = dealerHand.get(1).getNumber();
+        if (secondHand == 1) {
+            System.out.println("A " + dealerHand.get(1).getSuit());
+        } else if (secondHand == 11) {
+            System.out.println("J " + dealerHand.get(1).getSuit());
+        } else if (secondHand == 12) {
+            System.out.println("Q " + dealerHand.get(1).getSuit());
+        } else if (secondHand == 13) {
+            System.out.println("K " + dealerHand.get(1).getSuit());
+        } else {
+            System.out.println(secondHand + " " + dealerHand.get(1).getSuit());
+
+        }
+
+
         System.out.println("---");
         System.out.println("total: " + "?");
 
