@@ -1,12 +1,11 @@
-package com.MiniProject2;
-
-import java.util.ArrayList;
-
 /**
  * This class represents the players at the black jack table
  *
  * @author Jeremy Yang
  */
+
+import java.util.ArrayList;
+
 public class Players {
 
     private ArrayList<Cards> cards;

@@ -1,15 +1,14 @@
-package com.MiniProject2;
-
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Stack;
-
 /**
  * @author Jeremy Yang
  * EN.605.201.81.FA21
  * Mini Project 2
  * This the main class for the Black Jack Game Simulator
  */
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Stack;
+
 public class BlackJackGameSimulator {
 
     public static void main(String[] args) throws InterruptedException {

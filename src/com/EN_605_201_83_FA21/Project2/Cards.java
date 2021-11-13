@@ -1,10 +1,9 @@
-package com.MiniProject2;
-
 /**
  * This class represents a standard 52 playing card
  *
  * @author Jeremy Yang
  */
+
 public class Cards {
     private int number;
     private String suit;
