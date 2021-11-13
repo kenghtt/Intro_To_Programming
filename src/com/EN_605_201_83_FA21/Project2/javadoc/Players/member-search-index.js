@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"<Unnamed>","c":"Players","l":"cards"},{"p":"<Unnamed>","c":"Players","l":"getCards()"},{"p":"<Unnamed>","c":"Players","l":"Players(ArrayList<Cards>)","url":"Players-java.util.ArrayList-"}]

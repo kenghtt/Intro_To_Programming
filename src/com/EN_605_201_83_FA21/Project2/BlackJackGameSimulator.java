@@ -98,7 +98,7 @@ public class BlackJackGameSimulator {
      *
      * @param cardStack This is the current deck available for this round
      * @return A string value is returned indicating whether the player Won, Lost, or Draw
-     * @throws InterruptedException
+     * @throws InterruptedException Exception is thrown for the thread sleeper, this allows turn to slow down for Dealer's turn
      */
     static String playRound(Stack<Cards> cardStack) throws InterruptedException {
         Players player = new Players(new ArrayList<>());    // Create Player object
@@ -231,8 +231,8 @@ public class BlackJackGameSimulator {
     /**
      * This method prints the player/dealer hand. This also calculates the score for the player/dealer
      *
-     * @param playerHand
-     * @param hand This is the cards that is delt to the player/dealer
+     * @param playerHand This is the cards that is delt to the player/dealer
+     * @param hand This indicates who the hand belongs to (dealer/player)
      * @return An int value indicating the current score value is returned
      */
     private static int getHand(ArrayList<Cards> playerHand, String hand) {
