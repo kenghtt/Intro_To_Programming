@@ -70,7 +70,7 @@ public class BlackJackGameSimulator {
                 System.out.println("You do not have enough to continue!");
                 break;
             }
-
+            System.out.println("");
             System.out.println("Do you want to play another round?: ");
             System.out.println("Y for Yes ");
             System.out.println("N for No ");
@@ -116,7 +116,7 @@ public class BlackJackGameSimulator {
         }
 
         // Deal for player
-        while (playerScore <= 21 && !stand) {
+        while (playerScore < 21 && !stand) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("");
             System.out.println("1. Hit");
@@ -149,7 +149,8 @@ public class BlackJackGameSimulator {
                     System.out.println("BUST!!!!");
                     return "Lose";   // Player loses
                 } else if (playerScore == 21) {
-                    return "Win";    // Player wins
+//                    return "Win";    // Player wins
+                    continue;
                 }
             }
         }
