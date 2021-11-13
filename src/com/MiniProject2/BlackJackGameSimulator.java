@@ -103,7 +103,7 @@ public class BlackJackGameSimulator {
         dealCard(cardStack, player.getCards());
 
         // Display Dealer's Initial Hand
-        getUnrevealedDealerHand(dealer.getCards());
+        dealerScore = getUnrevealedDealerHand(dealer.getCards());
         System.out.println("");
 
         // Display Player's Initial hand
@@ -148,10 +148,13 @@ public class BlackJackGameSimulator {
             }
         }
 
+        if (dealerScore >= 16) {
+            Thread.sleep(2000);
+            dealerScore = getHand(dealer.getCards(), "Dealer");
+        }
         while (dealerScore < 16) {
             dealCard(cardStack, dealer.getCards());
             dealerScore = getHand(dealer.getCards(), "Dealer");
-            Thread.sleep(2000);
         }
         if (dealerScore > 21) {
             return "Win"; // player wins
@@ -164,11 +167,13 @@ public class BlackJackGameSimulator {
 
     }
 
-    private static void getUnrevealedDealerHand(ArrayList<Cards> dealerHand) {
+    private static int getUnrevealedDealerHand(ArrayList<Cards> dealerHand) {
+        int dealerScore = 0;
+        int aceCounter = 0;
         System.out.println("");
         System.out.println("Dealer Hand: ");
         System.out.println("? Hidden");
-
+        int firstHand = dealerHand.get(0).getNumber();
         int secondHand = dealerHand.get(1).getNumber();
         if (secondHand == 1) {
             System.out.println("A " + dealerHand.get(1).getSuit());
@@ -183,6 +188,25 @@ public class BlackJackGameSimulator {
         }
         System.out.println("---");
         System.out.println("total: " + "?");
+
+        if (firstHand == 1) {
+            dealerScore += 11;
+            aceCounter++;
+        } else dealerScore += Math.min(firstHand, 10);
+
+        if (secondHand == 1) {
+            dealerScore += 11;
+            aceCounter++;
+        } else dealerScore += Math.min(secondHand, 10);
+
+        if(aceCounter == 2){
+            dealerScore -= 10;
+        }
+
+        dealerScore += Math.min(dealerHand.get(0).getNumber(), 10);
+        dealerScore += Math.min(dealerHand.get(1).getNumber(), 10);
+
+        return dealerScore;
     }
 
     private static int getHand(ArrayList<Cards> playerHand, String hand) {
