@@ -160,11 +160,12 @@ public class BlackJackGameSimulator {
             }
         }
 
-        if (dealerScore >= 16) {
+        if (dealerScore >= 17) {
             Thread.sleep(2000);
             dealerScore = getHand(dealer.getCards(), "Dealer");
         }
-        while (dealerScore < 16) {
+        while (dealerScore < 17) {
+            Thread.sleep(2000);
             dealCard(cardStack, dealer.getCards());
             dealerScore = getHand(dealer.getCards(), "Dealer");
         }
@@ -175,9 +176,12 @@ public class BlackJackGameSimulator {
         } else if (dealerScore == playerScore) {
             return "Draw";
         }
+
         return "Lose";
 
     }
+
+
 
     /**
      * This method prints the dealer's initial hand, which includes one card faced up and one hidden. This also calculates the inital
