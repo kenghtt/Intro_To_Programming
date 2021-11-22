@@ -1,5 +1,3 @@
-package com.Module11;
-
 /**
  * This is the Object used to contain information for a contact.
  */
